@@ -9,15 +9,13 @@ namespace OOP_finals__console_
 {
     internal class MainApp
     {
-
+        Display disp = new Display();
+        ReadAndWrite rnw = new ReadAndWrite();
         public void Start(int choice)
         {
             while (choice != 0)
-            {
-                Display disp = new Display();
-                ReadAndWrite rnw = new ReadAndWrite();
-
-                string[] ManagerInfo = new string[7];
+            {            
+                string[] ManagerInfo = new string[8];
                 //bool whatthefuck = false;
 
                 switch (choice)
@@ -26,27 +24,38 @@ namespace OOP_finals__console_
                     case 1:
                         infoManager(choice, ManagerInfo);
                         rnw.Write(choice, ManagerInfo);
+                        Console.WriteLine("Done! (Press any key to return to menu)");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
+
                     //assigning task
                     case 2:
                         infoManager(choice, ManagerInfo);
                         rnw.Write(choice, ManagerInfo);
+                        Console.WriteLine("Done! (Press any key to return to menu)");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
+
                     //check task manager
                     case 3:
+                        disp.CMenu();
                         Console.Clear();
                         break;
-                    //task informations 
+
+                    //task information
                     case 4:
+                        Console.Clear();
+                        break;
+
+                    //comments
+                    case 5:
                         Console.Clear();
                         break;
                 }
                 if(choice != 0)
-                {
-                    Console.WriteLine("Done! (Press any key to return to menu)");
-                    Console.ReadKey();
-                    Console.Clear();
+                {                  
                     choice = disp.choices();
                 }
                 
@@ -68,28 +77,27 @@ namespace OOP_finals__console_
         //}
 
         public string[] infoManager(int choice, string[] ManagerInfo)
-        {
-            ReadAndWrite rnw = new ReadAndWrite();
-            Display disp = new Display();
-
-            string[] temp = new string[rnw.Read().Length];
+        {                     
             string TaskName = "";
             string TaskDesc = "";
             string Assigned = "";
-            string TaskStatus = "";         
+            string TaskStatus = "";   
+            bool pass = false;
+
+            string[] temp = new string[rnw.Read(pass).Length];
 
             DateTime currTime = DateTime.Now;
 
             // 0 - task name
-            // 1 - hrs
-            // 2 - min
-            // 3 - Assigned to who
+            // 1 - creation time
+            // 2 - assigned to who
+            // 3 - assigned time
             // 4 - task status 
-            // 5 - default N/A
+            // 5 - completion time
             // 6 - task desc
+            // 7 - N/A
 
-            ManagerInfo[1] = Convert.ToString(currTime.Hour);
-            ManagerInfo[2] = Convert.ToString(currTime.Minute);
+            ManagerInfo[1] = String.Concat(Convert.ToString(currTime.Hour),':', Convert.ToString(currTime.Minute));
             ManagerInfo[5] = "N/A";
 
             switch (choice)
@@ -107,8 +115,9 @@ namespace OOP_finals__console_
 
                 //assigning task
                 case 2:
+                    pass = true;
                     disp.TMenu();
-                    temp = rnw.Read();
+                    temp = rnw.Read(pass);
                     for (int x = 0; x < temp.Length; x++)
                     {
                         if (temp[x] == null)
@@ -124,13 +133,15 @@ namespace OOP_finals__console_
                     Console.WriteLine("Who is this going to be assigned to?");
                     Assigned = Console.ReadLine();
                     ManagerInfo[0] = TaskName;
-                    ManagerInfo[3] = Assigned;
+                    ManagerInfo[2] = Assigned;
+                    ManagerInfo[3] = ManagerInfo[1];
                     ManagerInfo[4] = "Assigned";
+                    pass = false;
                     break;
 
                 //check task manager
                 case 3:
-
+                   
                     break;
 
                 //task informations 

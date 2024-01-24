@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,7 @@ namespace OOP_finals__console_
 {
     internal class Display
     {
+        ReadAndWrite rnw = new ReadAndWrite();      
         public void MMenu()
         {
             Console.Write("  _______        _      __  __                                   \r\n |__   __|      | |    |  \\/  |                                  " +
@@ -30,6 +32,37 @@ namespace OOP_finals__console_
                        "\r\n  \\_____\\__,_|_|  |_|  \\___|_| |_|\\__|    |_|\\__,_|___/_|\\_\\___(_)" +
                        "\r\n                                                                 " +
                        " \r\n                                                                  ");
+        }
+        public void CMenu()
+        {
+            string[] temp = new string[10];
+            bool pass = false;
+
+            Console.Write("  __  __                                   " +
+                "\r\n |  \\/  |                                  " +
+                "\r\n | \\  / | __ _ _ __   __ _  __ _  ___ _ __ " +
+                "\r\n | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '__|" +
+                "\r\n | |  | | (_| | | | | (_| | (_| |  __/ |   " +
+                "\r\n |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " +
+                "\r\n                            __/ |          " +
+                "\r\n                           |___/           ");
+            temp = rnw.Read(pass);
+            int length = temp[0].Split(',').Length;
+            for (int x = 0; x < length; x++)
+            {
+                if (temp[x] == null)
+                {
+                    break;
+                }
+                Console.Write("\n||");
+                for (int y = 0; y < length; y++)
+                {
+                    Console.Write(temp[x].Split(',')[y] + "  |");
+                }
+                Console.Write("|");
+            }
+            Console.WriteLine("\n\nManager is now shown! (Press any key to return)");
+            Console.ReadKey();
         }
 
         public int choices()
