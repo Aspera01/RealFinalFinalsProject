@@ -12,37 +12,49 @@ namespace OOP_finals__console_
 
         public void Start(int choice)
         {
-            Display disp = new Display();
-            ReadAndWrite rnw = new ReadAndWrite();
-
-            string[] ManagerInfo = new string[7];
-            //bool didsomething = false;
-
-            switch (choice)
+            while (choice != 0)
             {
-                //creating task
-                case 1:
-                    infoManager(choice, ManagerInfo);
-                    rnw.Write(choice, ManagerInfo);
-                    break;
-                //assigning task
-                case 2:
-                    infoManager(choice, ManagerInfo);
+                Display disp = new Display();
+                ReadAndWrite rnw = new ReadAndWrite();
+
+                string[] ManagerInfo = new string[7];
+                //bool whatthefuck = false;
+
+                switch (choice)
+                {
+                    //creating task
+                    case 1:
+                        infoManager(choice, ManagerInfo);
+                        rnw.Write(choice, ManagerInfo);
+                        break;
+                    //assigning task
+                    case 2:
+                        infoManager(choice, ManagerInfo);
+                        rnw.Write(choice, ManagerInfo);
+                        Console.Clear();
+                        break;
+                    //check task manager
+                    case 3:
+                        Console.Clear();
+                        break;
+                    //task informations 
+                    case 4:
+                        Console.Clear();
+                        break;
+                }
+                if(choice != 0)
+                {
+                    Console.WriteLine("Done! (Press any key to return to menu)");
+                    Console.ReadKey();
                     Console.Clear();
-                    break;
-                //check task manager
-                case 3:
-                    Console.Clear();
-                    break;
-                //task informations 
-                case 4:
-                    Console.Clear();
-                    break;
-            }          
-            Console.WriteLine("Done! (Press any key to return to menu)");
+                    choice = disp.choices();
+                }
+                
+            }
+            Console.WriteLine("Thanks for using!");
             Console.ReadKey();
             Console.Clear();
-            disp.choices();
+
         }
 
         //public void assignTask()
@@ -58,12 +70,13 @@ namespace OOP_finals__console_
         public string[] infoManager(int choice, string[] ManagerInfo)
         {
             ReadAndWrite rnw = new ReadAndWrite();
+            Display disp = new Display();
 
+            string[] temp = new string[rnw.Read().Length];
             string TaskName = "";
             string TaskDesc = "";
             string Assigned = "";
-            string TaskStatus = "";
-            List<String> temp = new List<String>();
+            string TaskStatus = "";         
 
             DateTime currTime = DateTime.Now;
 
@@ -91,23 +104,18 @@ namespace OOP_finals__console_
                     ManagerInfo[4] = "Open";
                     ManagerInfo[6] = TaskDesc;
                     break;
+
                 //assigning task
                 case 2:
-                    Console.Write("   _____                          _     _______        _          " +
-                        "\r\n  / ____|                        | |   |__   __|      | |       _ " +
-                        "\r\n | |    _   _ _ __ _ __ ___ _ __ | |_     | | __ _ ___| | _____(_)" +
-                        "\r\n | |   | | | | '__| '__/ _ \\ '_ \\| __|    | |/ _` / __| |/ / __|  " +
-                        "\r\n | |___| |_| | |  | | |  __/ | | | |_     | | (_| \\__ \\   <\\__ \\_ " +
-                        "\r\n  \\_____\\__,_|_|  |_|  \\___|_| |_|\\__|    |_|\\__,_|___/_|\\_\\___(_)" +
-                        "\r\n                                                                 " +
-                        " \r\n                                                                  ");
-                    for (int x = 0; x < rnw.Read().Length; x++)
+                    disp.TMenu();
+                    temp = rnw.Read();
+                    for (int x = 0; x < temp.Length; x++)
                     {
-                        if (rnw.Read()[x] == null)
+                        if (temp[x] == null)
                         {
                             break;
                         }
-                        Console.WriteLine("\n" + rnw.Read()[x].Split('|')[0]);
+                        Console.WriteLine("\n" + temp[x].Split('|')[0]);
 
                     }
                     Console.WriteLine("==========");
@@ -115,12 +123,16 @@ namespace OOP_finals__console_
                     TaskName = Console.ReadLine();
                     Console.WriteLine("Who is this going to be assigned to?");
                     Assigned = Console.ReadLine();
-                    Console.Clear();
+                    ManagerInfo[0] = TaskName;
+                    ManagerInfo[3] = Assigned;
+                    ManagerInfo[4] = "Assigned";
                     break;
+
                 //check task manager
                 case 3:
 
                     break;
+
                 //task informations 
                 case 4:
 

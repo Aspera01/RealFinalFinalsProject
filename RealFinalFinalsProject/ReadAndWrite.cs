@@ -20,8 +20,7 @@ namespace OOP_finals__console_
                     nw.WriteLine("Task, Creation Time, Assigned To, Assigned Time, Task Status, Completion Time");
                 }
                 using (StreamWriter nw = new StreamWriter("TaskInformation.txt"))
-                {
-                    nw.WriteLine("");
+                {                  
                 }
                 Thread.Sleep(2000);
                 Console.Clear();
@@ -40,8 +39,9 @@ namespace OOP_finals__console_
                     {
                         sw.WriteLine("{0},{1}:{2},{3},{4},{5},{6}", ManagerInfo[0], ManagerInfo[1], ManagerInfo[2], ManagerInfo[5], ManagerInfo[5], ManagerInfo[4], ManagerInfo[5]);
                     }
-                    using (StreamWriter sw = new StreamWriter("TaskInformation.txt"))
+                    using (StreamWriter sw = new StreamWriter("TaskInformation.txt",  true))
                     {
+                        sw.WriteLine("{0} | {1}", ManagerInfo[0], ManagerInfo[6]);
                     }
                     Console.WriteLine("Creating Task....");
                     Thread.Sleep(2000);
@@ -49,6 +49,10 @@ namespace OOP_finals__console_
                     break;
                 //assigning task
                 case 2:
+                    using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
+                    {
+                        sw.WriteLine("{0},{1}:{2},{3},{4},{5},{6}", ManagerInfo[0], ManagerInfo[1], ManagerInfo[2], ManagerInfo[5], ManagerInfo[5], ManagerInfo[4], ManagerInfo[5]);
+                    }
                     break;
                 //check task manager
                 case 3:

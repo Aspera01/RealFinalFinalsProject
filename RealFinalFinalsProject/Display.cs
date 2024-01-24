@@ -20,6 +20,18 @@ namespace OOP_finals__console_
             Console.Clear();
         }
 
+        public void TMenu()
+        {
+            Console.Write("   _____                          _     _______        _          " +
+                       "\r\n  / ____|                        | |   |__   __|      | |       _ " +
+                       "\r\n | |    _   _ _ __ _ __ ___ _ __ | |_     | | __ _ ___| | _____(_)" +
+                       "\r\n | |   | | | | '__| '__/ _ \\ '_ \\| __|    | |/ _` / __| |/ / __|  " +
+                       "\r\n | |___| |_| | |  | | |  __/ | | | |_     | | (_| \\__ \\   <\\__ \\_ " +
+                       "\r\n  \\_____\\__,_|_|  |_|  \\___|_| |_|\\__|    |_|\\__,_|___/_|\\_\\___(_)" +
+                       "\r\n                                                                 " +
+                       " \r\n                                                                  ");
+        }
+
         public int choices()
         {
             int choice = 0;
@@ -31,7 +43,7 @@ namespace OOP_finals__console_
                 "\r\n |_|  |_|\\__,_|_|_| |_| |_|  |_|\\___|_| |_|\\__,_|" +
                 "\r\n                                                 ");
 
-            Console.Write("\n[1]Create Tasks \n[2]Assign Task \n[3]Check Manager \n[4]Task Information \n");          
+            Console.Write("\n[1]Create Tasks \n[2]Assign Task \n[3]Check Manager \n[4]Task Information \n[0]Exit Task Manager\n");          
             choice = int.Parse(Console.ReadLine());
             Console.Clear();
             return choice;
