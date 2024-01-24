@@ -52,13 +52,13 @@ namespace OOP_finals__console_
                         Console.Clear();
                         break;
 
-                    //comments
+                    //commentss
                     case 5:
                         Console.Clear();
                         break;
                     default:
                         choice = 1;
-                        Console.WriteLine("pls input a proper choice...");
+                        Console.WriteLine("pls input a proper choice..."); 
                         Console.ReadKey();
                         Console.Clear();
                         break;

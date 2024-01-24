@@ -154,6 +154,7 @@ namespace OOP_finals__console_
                         lines[x] = line;                    
                         x++;
                     }
+
                 }
             }
                   

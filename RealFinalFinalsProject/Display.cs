@@ -121,6 +121,7 @@ namespace OOP_finals__console_
                 Console.Clear();
                 Console.WriteLine("pls input a proper choice...");
                 //Console.ReadKey();
+                //wha
                 choice = 4125;
             }
             Console.Clear();
