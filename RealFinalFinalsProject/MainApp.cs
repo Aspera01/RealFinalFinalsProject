@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace OOP_finals__console_
     {
         Display disp = new Display();
         ReadAndWrite rnw = new ReadAndWrite();
+        bool pass = false;
         public void Start(int choice)
         {
             while (choice != 0)
@@ -46,11 +48,18 @@ namespace OOP_finals__console_
 
                     //task information
                     case 4:
+                        disp.IM();
                         Console.Clear();
                         break;
 
                     //comments
                     case 5:
+                        Console.Clear();
+                        break;
+                    default:
+                        choice = 1;
+                        Console.WriteLine("pls input a proper choice...");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                 }
