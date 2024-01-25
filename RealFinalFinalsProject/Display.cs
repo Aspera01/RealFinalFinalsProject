@@ -125,8 +125,11 @@ namespace OOP_finals__console_
                 {
                     break;
                 }
-                Console.Write("\n====================\n");
-                Console.Write(temp[x].Split(',')[0] + " | " + temp[x].Split(',')[4]);            
+                if (temp[x].Split(',')[4] != "OPEN")
+                {
+                    Console.Write("\n====================\n");
+                    Console.Write(temp[x].Split(',')[0] + " | " + temp[x].Split(',')[4]);
+                }                  
             }
             Console.Write("\n====================\n");
 
