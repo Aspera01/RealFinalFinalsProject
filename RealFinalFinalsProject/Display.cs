@@ -63,9 +63,18 @@ namespace OOP_finals__console_
                 Console.Write("\n||");
                 for (int y = 0; y < bro; y++)
                 {
-                    Console.Write(temp[x].Split(',')[y] + "  |");
+                    Console.Write(temp[x].Split(',')[y]);
+                    if (x <= 0)
+                    {
+                        Console.Write(" | ");
+                    }
+                    if (x > 0)
+                    {
+                        Console.Write("|          ");
+                    }
+
                 }
-                Console.Write("|");
+                
             }
             Console.WriteLine("\n\nManager is now shown! (Press any key to return)");
             Console.ReadKey();
@@ -97,6 +106,19 @@ namespace OOP_finals__console_
             Console.WriteLine("\n\nTask Information is now shown! (Press any key to return)");
             Console.ReadKey();
             pass = false;
+
+        }
+
+        public void Comments()
+        {
+            Console.Write("   _____                                     _       " +
+                "\r\n  / ____|                                   | |      " +
+                "\r\n | |     ___  _ __ ___  _ __ ___   ___ _ __ | |_ ___ " +
+                "\r\n | |    / _ \\| '_ ` _ \\| '_ ` _ \\ / _ | '_ \\| __/ __|" +
+                "\r\n | |___| (_) | | | | | | | | | | |  __| | | | |_\\__ \\" +
+                "\r\n  \\_____\\___/|_| |_| |_|_| |_| |_|\\___|_| |_|\\__|___/" +
+                "\r\n                                                    " +
+                "\r\n                                                     ");
 
         }
 

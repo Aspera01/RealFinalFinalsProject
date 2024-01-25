@@ -17,7 +17,7 @@ namespace OOP_finals__console_
         {
             while (choice != 0)
             {            
-                string[] ManagerInfo = new string[8];
+                string[] ManagerInfo = new string[9];
                 //bool whatthefuck = false;
 
                 switch (choice)
@@ -32,7 +32,7 @@ namespace OOP_finals__console_
                         break;
 
                     //assigning task
-                    case 2:
+                    case 2:                        
                         infoManager(choice, ManagerInfo);
                         rnw.Write(choice, ManagerInfo);
                         Console.WriteLine("Done! (Press any key to return to menu)");
@@ -54,8 +54,13 @@ namespace OOP_finals__console_
 
                     //commentss
                     case 5:
+                        infoManager(choice, ManagerInfo);
+                        rnw.Write(choice, ManagerInfo);
+                        Console.WriteLine("Done! (Press any key to return to menu)");
+                        Console.ReadKey();
                         Console.Clear();
                         break;
+                    //its over retard bros
                     default:
                         choice = 1;
                         Console.WriteLine("pls input a proper choice..."); 
@@ -69,28 +74,12 @@ namespace OOP_finals__console_
                 }
                 
             }
-            Console.WriteLine("Thanks for using!");
-            Console.ReadKey();
-            Console.Clear();
-
         }
 
-        //public void assignTask()
-        //{
-
-        //}
-
-        //public void something()
-        //{
-
-        //}
-
         public string[] infoManager(int choice, string[] ManagerInfo)
-        {                     
-            string TaskName = "";
-            string TaskDesc = "";
-            string Assigned = "";
-            string TaskStatus = "";   
+        {
+            string temp1 = "";
+            string temp2 = "";
             bool pass = false;
 
             string[] temp = new string[rnw.Read(pass).Length];
@@ -103,23 +92,27 @@ namespace OOP_finals__console_
             // 3 - assigned time
             // 4 - task status 
             // 5 - completion time
-            // 6 - task desc
-            // 7 - N/A
-
-            ManagerInfo[1] = String.Concat(Convert.ToString(currTime.Hour),':', Convert.ToString(currTime.Minute));
-            ManagerInfo[5] = "N/A";
+            // 6 - comments
+            // 7 - task desc
+            // 8 - N/A
+          
+            for(int w = 0; w < ManagerInfo.Length; w++)
+            {
+                ManagerInfo[w] = "N/A";
+            }
+            ManagerInfo[1] = String.Concat(Convert.ToString(currTime.Hour), ':', Convert.ToString(currTime.Minute));
 
             switch (choice)
             {
                 //creating task
                 case 1:
                     Console.Write("Please put the name of your task here: ");
-                    TaskName = Console.ReadLine();
+                    temp1 = Console.ReadLine();
                     Console.Write("Please write a short/brief description of your task: ");
-                    TaskDesc = Console.ReadLine();
-                    ManagerInfo[0] = TaskName;
+                    temp2 = Console.ReadLine();
+                    ManagerInfo[0] = temp1;
                     ManagerInfo[4] = "Open";
-                    ManagerInfo[6] = TaskDesc;
+                    ManagerInfo[7] = temp2;
                     break;
 
                 //assigning task
@@ -138,11 +131,11 @@ namespace OOP_finals__console_
                     }
                     Console.WriteLine("==========");
                     Console.WriteLine("Please choose a task:");
-                    TaskName = Console.ReadLine();
+                    temp1 = Console.ReadLine();
                     Console.WriteLine("Who is this going to be assigned to?");
-                    Assigned = Console.ReadLine();
-                    ManagerInfo[0] = TaskName;
-                    ManagerInfo[2] = Assigned;
+                    temp2 = Console.ReadLine();
+                    ManagerInfo[0] = temp1;
+                    ManagerInfo[2] = temp2;
                     ManagerInfo[3] = ManagerInfo[1];
                     ManagerInfo[4] = "Assigned";
                     pass = false;
@@ -155,7 +148,29 @@ namespace OOP_finals__console_
 
                 //task informations 
                 case 4:
+                    break;
+                //comment section
+                case 5:
+                    pass = true;
+                    disp.Comments();
+                    temp = rnw.Read(pass);
+                    for (int x = 0; x < temp.Length; x++)
+                    {
+                        if (temp[x] == null)
+                        {
+                            break;
+                        }
+                        Console.WriteLine("\n" + temp[x].Split('|')[0]);
 
+                    }
+                    Console.WriteLine("==========");
+                    Console.WriteLine("Choose a task to comment on:");
+                    temp1 = Console.ReadLine();
+                    Console.WriteLine("Input comment here:");
+                    temp2 = Console.ReadLine();
+                    ManagerInfo[0] = temp1;
+                    ManagerInfo[6] = temp2;
+                    pass = false;
                     break;
             }
             //Console.ReadKey();
