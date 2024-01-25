@@ -17,8 +17,7 @@ namespace OOP_finals__console_
         {
             while (choice != 0)
             {            
-                string[] ManagerInfo = new string[9];
-                //bool whatthefuck = false;
+                string[] ManagerInfo = new string[11];
 
                 switch (choice)
                 {
@@ -60,8 +59,15 @@ namespace OOP_finals__console_
                         Console.ReadKey();
                         Console.Clear();
                         break;
-                    //check status
+                    //verification
                     case 6:
+                        infoManager(choice, ManagerInfo);
+                        rnw.Write(choice, ManagerInfo);
+                        Console.WriteLine("Done! (Press any key to return to menu)");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case 7:
                         infoManager(choice, ManagerInfo);
                         rnw.Write(choice, ManagerInfo);
                         Console.WriteLine("Done! (Press any key to return to menu)");
@@ -71,7 +77,7 @@ namespace OOP_finals__console_
                     //its over retard bros
                     default:
                         choice = 1;
-                        Console.WriteLine("pls input a proper choice..."); 
+                        Console.WriteLine("pls input correctly..."); 
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -86,11 +92,10 @@ namespace OOP_finals__console_
 
         public string[] infoManager(int choice, string[] ManagerInfo)
         {
-            string temp1 = "";
-            string temp2 = "";
             bool pass = false;
 
             string[] temp = new string[rnw.Read(pass).Length];
+            string[] temp2 = new string[9];
 
             DateTime currTime = DateTime.Now;
 
@@ -101,8 +106,10 @@ namespace OOP_finals__console_
             // 4 - task status 
             // 5 - completion time
             // 6 - comments
-            // 7 - task desc
-            // 8 - N/A
+            // 7 - verification
+            // 8 - task desc
+            // 9 - verifying time
+            // 10 - N/A
           
             for(int w = 0; w < ManagerInfo.Length; w++)
             {
@@ -117,7 +124,7 @@ namespace OOP_finals__console_
                     Console.Write("Please put the name of your task here: ");
                     ManagerInfo[0] = Console.ReadLine().ToUpper();
                     Console.Write("Please write a short/brief description of your task: ");
-                    ManagerInfo[7] = Console.ReadLine();
+                    ManagerInfo[8] = Console.ReadLine();
                     ManagerInfo[4] = "OPEN";
                     break;
 
@@ -163,17 +170,77 @@ namespace OOP_finals__console_
                     ManagerInfo[0] = Console.ReadLine().ToUpper();
                     Console.WriteLine("Input comment here:");
                     ManagerInfo[6] = Console.ReadLine();
-                    //ManagerInfo[0] = temp1;
-                    //ManagerInfo[6] = temp2;
                     pass = false;
                     break;
                 case 6:
-                    disp.SMenu();
-                    Console.WriteLine("\n\nPick a task you'd like its status changed: ");
+                    disp.VMenu();
+                    Console.WriteLine("\n\nPick a task you'd like to verify: ");
                     ManagerInfo[0] = Console.ReadLine().ToUpper();
-                    Console.WriteLine("Please input its new status: (For Verification/ For Revision/ Closed)");
-                    ManagerInfo[4] = Console.ReadLine().ToUpper();
+                    ManagerInfo[9] = ManagerInfo[1];
+                    temp = rnw.Read(pass);
+                    for(int i = 0; i < temp.Length;i++)
+                    {
+                        if (temp[i] != null)
+                        {
+                            for (int j = 0; j < temp2.Length; j++)
+                            {
+                                temp2[j] = temp[i].Split(',')[j];
+                            }
+                            if (temp2[0] == ManagerInfo[0])
+                            {
+                                if (temp2[4] == "ASSIGNED" || temp2[4] == "OPEN")
+                                {
+                                    ManagerInfo[7] = "NO";
+                                    break;
+                                }
+                                else if (temp2[4] == "FOR VERIFICATION")
+                                {
+                                    ManagerInfo[7] = "FOR VERIFICATION";
+                                    break;
+                                }
+                                else if (temp2[4] == "CLOSED")
+                                {
+                                    ManagerInfo[7] = "VERIFIED";
+                                    break;
+                                }
+                                //}
+                            }
+                        }
+                            
+                    }
+
                     break;
+
+                case 7:
+                    disp.TMenu();
+                    temp = rnw.Read(pass);
+                    ManagerInfo[0]
+                    int bro = temp[0].Split('|').Length;
+                    for (int x = 0; x < temp.Length; x++)
+                    {
+                        if (temp[x] == null)
+                        {
+                            break;
+                        }
+                        Console.Write("\n=============================\n");
+                        //for (int y = 0; y < bro; y++)
+                        //{
+                        Console.Write(temp[x].Split(',')[0] + " | ");
+                        Console.Write(temp[x].Split(',')[4] + " | ");
+                        //}
+                    }
+                    Console.WriteLine("\n\nPick a task to end/close");
+                    ManagerInfo[0] = Console.ReadLine().ToUpper();
+                    Console.WriteLine("Do you want to end/close this task?");
+                    ManagerInfo[4] = Console.ReadLine().ToUpper();
+                    if (ManagerInfo[4] == "END")
+                        ManagerInfo[4] = "FOR VERIFICATION";
+                    else if (ManagerInfo[4] == "CLOSE")
+                    {
+                        ManagerInfo[4] = "CLOSED";
+                    }
+                    break;
+                                         
             }
             //Console.ReadKey();
 

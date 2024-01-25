@@ -61,7 +61,7 @@ namespace OOP_finals__console_
                     break;
                 }
                 Console.Write("\n||");
-                for (int y = 0; y < bro; y++)
+                for (int y = 0; y < bro-1; y++)
                 {
                     Console.Write(temp[x].Split(',')[y]);
                     if (x <= 0)
@@ -70,7 +70,7 @@ namespace OOP_finals__console_
                     }
                     if (x > 0)
                     {
-                        Console.Write("|          ");
+                        Console.Write("|       ");
                     }
 
                 }
@@ -108,15 +108,17 @@ namespace OOP_finals__console_
             pass = false;
 
         }
-        public void SMenu()
-        {
-            Console.Write("  _______        _          " +
-                "\r\n |__   __|      | |       _ " +
-                "\r\n    | | __ _ ___| | _____(_)" +
-                "\r\n    | |/ _` / __| |/ / __|  " +
-                "\r\n    | | (_| \\__ |   <\\__ \\_ " +
-                "\r\n    |_|\\__,_|___|_|\\_|___(_)\r\n                           " +
-                "\r\n                            ");
+        public void VMenu()
+        {        
+            Console.Write(" __      __       _  __       " +
+                "\r\n \\ \\    / /      (_)/ _|      " +
+                "\r\n  \\ \\  / /__ _ __ _| |_ _   _ " +
+                "\r\n   \\ \\/ / _ \\ '__| |  _| | | |" +
+                "\r\n    \\  /  __/ |  | | | | |_| |" +
+                "\r\n     \\/ \\___|_|  |_|_|  \\__, |" +
+                "\r\n                         __/ |" +
+                "\r\n                        |___/ ");
+            //pass = true;
             temp = rnw.Read(pass);
             int bro = temp[0].Split('|').Length;
             for (int x = 1; x < temp.Length; x++)
@@ -129,7 +131,7 @@ namespace OOP_finals__console_
                 {
                     Console.Write("\n====================\n");
                     Console.Write(temp[x].Split(',')[0] + " | " + temp[x].Split(',')[4]);
-                }                  
+                }
             }
             Console.Write("\n====================\n");
 
@@ -159,7 +161,7 @@ namespace OOP_finals__console_
                 "\r\n |_|  |_|\\__,_|_|_| |_| |_|  |_|\\___|_| |_|\\__,_|" +
                 "\r\n                                                 ");
 
-            Console.Write("\n[1]Create Tasks \n[2]Assign Task \n[3]Check Manager \n[4]Task Information \n[5]Comments \n[6]Status Change \n[0]Exit Task Manager\n");
+            Console.Write("\n[1]Create Tasks \n[2]Assign Task \n[3]Check Manager \n[4]Task Information \n[5]Comments \n[6]Verification Page \n[7]End/Close Task \n[0]Exit Task Manager\n");
             try
             {
                 choice = int.Parse(Console.ReadLine());

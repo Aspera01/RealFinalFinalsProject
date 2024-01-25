@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace OOP_finals__console_
                 Console.WriteLine("Creating necessary files, please wait...");
                 using (StreamWriter nw = new StreamWriter(filename))
                 {
-                    nw.WriteLine("Task, Creation Time, Assigned To, Assigned Time, Task Status, Completion Time, Comments");
+                    nw.WriteLine("Task, Creation T., Assigned To, Assigned T., Task Status, Completion T., Comments, Verification, Verification T.");
                 }
                 using (StreamWriter nw = new StreamWriter("TaskInformation.txt"))
                 {                  
@@ -35,8 +36,8 @@ namespace OOP_finals__console_
         }
         public bool checker(bool stop, int knower, string[] ManagerInfo)
         {
-            string[] temp = new string[7];
-            string[] holder = new string[7];
+            string[] temp = new string[9];
+            string[] holder = new string[9];
             temp = Read(pass);
             for(int xx = 0; xx < temp.Length; xx++)
             {
@@ -58,7 +59,14 @@ namespace OOP_finals__console_
                         return true;
                     break;
                 case 6:
-                    break;                  
+                    if (ManagerInfo[7] == "NO")
+                        return true;
+                    break;
+                case 7:
+                    if (holder[4] == "OPEN")
+                        return true;
+                    break;
+
             }
             return false;
         }
@@ -76,11 +84,11 @@ namespace OOP_finals__console_
                 case 1:
                     using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                     {
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", ManagerInfo[0], ManagerInfo[1], ManagerInfo[2], ManagerInfo[3], ManagerInfo[4], ManagerInfo[5], ManagerInfo[6]);
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", ManagerInfo[0], ManagerInfo[1], ManagerInfo[2], ManagerInfo[3], ManagerInfo[4], ManagerInfo[5], ManagerInfo[6], ManagerInfo[7], ManagerInfo[9]);
                     }
                     using (StreamWriter sw = new StreamWriter("TaskInformation.txt",  true))
                     {
-                        sw.WriteLine("{0} | {1}", ManagerInfo[0], ManagerInfo[7]);
+                        sw.WriteLine("{0} | {1}", ManagerInfo[0], ManagerInfo[8]);
                     }
                     Console.WriteLine("Creating Task....");
                     Thread.Sleep(2000);
@@ -94,8 +102,8 @@ namespace OOP_finals__console_
                         break;
                     }
                     string[] dummy = new string[10];
-                    string[] newInfo = new string[7];
-                    string[] tempInfo = new string[7];
+                    string[] newInfo = new string[9];
+                    string[] tempInfo = new string[9];
                     dummy = Read(pass);
                     File.Delete("MasterFile.csv");
 
@@ -124,14 +132,14 @@ namespace OOP_finals__console_
                             {
                                 using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                                 {
-                                    sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6]);
+                                    sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6], newInfo[7], newInfo[8]);
                                 }
                             }
                             else if (x != 0 && pass == false)
                             {
                                 using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                                 {
-                                    sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6]);
+                                    sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], newInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6], newInfo[7], newInfo[8]);
                                 }                             
                             }
                             pass = false;
@@ -144,14 +152,35 @@ namespace OOP_finals__console_
             }
             if (stop)
             {
-                Console.Clear();
-                Console.WriteLine("That task is already assigned to!");
-                Console.ReadKey();
-                Console.Clear();
-                stop = false;
-            }
+                switch (knower)
+                {
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("That task is already assigned!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        stop = false;
+                        break;
+                    case 6:
+                        Console.Clear();
+                        Console.WriteLine("End/Assign the task first!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        stop = false;
+                        break;
+                    case 7:
+                        Console.Clear();
+                        Console.WriteLine("End/Assign the task first!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        stop = false;
+                        break;
+                }
 
+                
+            }
         }
+
         public bool specWrite(string[] tempInfo, string[] ManagerInfo, string[] newInfo, int knower, bool stop)
         {
             for (int y = 0; y < ManagerInfo.Length - 2; y++)
@@ -163,7 +192,7 @@ namespace OOP_finals__console_
                 case 2:                 
                     using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                     {
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], tempInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6]);
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], tempInfo[1], newInfo[2], newInfo[3], newInfo[4], newInfo[5], newInfo[6], newInfo[7], newInfo[8]);
                         Console.Clear();
                         Console.WriteLine("Creating Assignments....");
                         Thread.Sleep(2000);
@@ -173,7 +202,7 @@ namespace OOP_finals__console_
                 case 5:
                     using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                     {
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], tempInfo[4], tempInfo[5], newInfo[6]);
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], tempInfo[4], tempInfo[5], newInfo[6], newInfo[7], newInfo[8]);
                         Console.Clear();
                         Console.WriteLine("Inputting comments....");
                         Thread.Sleep(2000);
@@ -183,9 +212,19 @@ namespace OOP_finals__console_
                 case 6:
                     using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
                     {
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], newInfo[4], tempInfo[5], tempInfo[6]);
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], tempInfo[4], tempInfo[5], tempInfo[6], newInfo[7], ManagerInfo[7]);
                         Console.Clear();
-                        Console.WriteLine("Changing Status....");
+                        Console.WriteLine("Changing status and verification....");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                    }
+                    break;
+                case 7:
+                    using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
+                    {
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], newInfo[4], newInfo[2], tempInfo[6], newInfo[7], ManagerInfo[8]);
+                        Console.Clear();
+                        Console.WriteLine("Ending/Closing Task....");
                         Thread.Sleep(2000);
                         Console.Clear();
                     }
@@ -201,9 +240,10 @@ namespace OOP_finals__console_
         // 4 - task status 
         // 5 - completion time
         // 6 - comments
-        // 7 - task desc
-        // 8 - N/A
-
+        // 7 - verification
+        // 8 - task desc
+        // 9 - verification time
+        // 10 - n/a
 
         public string[] Read(bool pass)
         {
