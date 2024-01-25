@@ -60,6 +60,14 @@ namespace OOP_finals__console_
                         Console.ReadKey();
                         Console.Clear();
                         break;
+                    //check status
+                    case 6:
+                        infoManager(choice, ManagerInfo);
+                        rnw.Write(choice, ManagerInfo);
+                        Console.WriteLine("Done! (Press any key to return to menu)");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
                     //its over retard bros
                     default:
                         choice = 1;
@@ -107,12 +115,10 @@ namespace OOP_finals__console_
                 //creating task
                 case 1:
                     Console.Write("Please put the name of your task here: ");
-                    temp1 = Console.ReadLine();
+                    ManagerInfo[0] = Console.ReadLine().ToUpper();
                     Console.Write("Please write a short/brief description of your task: ");
-                    temp2 = Console.ReadLine();
-                    ManagerInfo[0] = temp1;
-                    ManagerInfo[4] = "Open";
-                    ManagerInfo[7] = temp2;
+                    ManagerInfo[7] = Console.ReadLine();
+                    ManagerInfo[4] = "OPEN";
                     break;
 
                 //assigning task
@@ -131,23 +137,12 @@ namespace OOP_finals__console_
                     }
                     Console.WriteLine("==========");
                     Console.WriteLine("Please choose a task:");
-                    temp1 = Console.ReadLine();
+                    ManagerInfo[0] = Console.ReadLine().ToUpper();
                     Console.WriteLine("Who is this going to be assigned to?");
-                    temp2 = Console.ReadLine();
-                    ManagerInfo[0] = temp1;
-                    ManagerInfo[2] = temp2;
+                    ManagerInfo[2] = Console.ReadLine().ToUpper();
                     ManagerInfo[3] = ManagerInfo[1];
-                    ManagerInfo[4] = "Assigned";
+                    ManagerInfo[4] = "ASSIGNED";
                     pass = false;
-                    break;
-
-                //check task manager
-                case 3:
-                   
-                    break;
-
-                //task informations 
-                case 4:
                     break;
                 //comment section
                 case 5:
@@ -165,12 +160,19 @@ namespace OOP_finals__console_
                     }
                     Console.WriteLine("==========");
                     Console.WriteLine("Choose a task to comment on:");
-                    temp1 = Console.ReadLine();
+                    ManagerInfo[0] = Console.ReadLine().ToUpper();
                     Console.WriteLine("Input comment here:");
-                    temp2 = Console.ReadLine();
-                    ManagerInfo[0] = temp1;
-                    ManagerInfo[6] = temp2;
+                    ManagerInfo[6] = Console.ReadLine();
+                    //ManagerInfo[0] = temp1;
+                    //ManagerInfo[6] = temp2;
                     pass = false;
+                    break;
+                case 6:
+                    disp.SMenu();
+                    Console.WriteLine("\n\nPick a task you'd like its status changed: ");
+                    ManagerInfo[0] = Console.ReadLine().ToUpper();
+                    Console.WriteLine("Please input its new status: (For Verification/ For Revision/ Closed)");
+                    ManagerInfo[4] = Console.ReadLine().ToUpper();
                     break;
             }
             //Console.ReadKey();

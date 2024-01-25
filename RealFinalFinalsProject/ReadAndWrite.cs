@@ -33,7 +33,7 @@ namespace OOP_finals__console_
                 Console.Clear();
             }
         }
-        public bool checker(bool stop, int choice, string[] ManagerInfo)
+        public bool checker(bool stop, int knower, string[] ManagerInfo)
         {
             string[] temp = new string[7];
             string[] holder = new string[7];
@@ -51,12 +51,14 @@ namespace OOP_finals__console_
                 }
             }
 
-            switch (choice)
+            switch (knower)
             {
                 case 2:
                     if (holder[2] != "N/A")
                         return true;
                     break;
+                case 6:
+                    break;                  
             }
             return false;
         }
@@ -86,7 +88,7 @@ namespace OOP_finals__console_
                     break;
                 //other tasks
                 case 2:
-                    stop = checker(stop, choice, ManagerInfo);
+                    stop = checker(stop, knower, ManagerInfo);
                     if (stop)
                     {                       
                         break;
@@ -174,6 +176,16 @@ namespace OOP_finals__console_
                         sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], tempInfo[4], tempInfo[5], newInfo[6]);
                         Console.Clear();
                         Console.WriteLine("Inputting comments....");
+                        Thread.Sleep(2000);
+                        Console.Clear();
+                    }
+                    break;
+                case 6:
+                    using (StreamWriter sw = new StreamWriter("MasterFile.csv", true))
+                    {
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", newInfo[0], tempInfo[1], tempInfo[2], tempInfo[3], newInfo[4], tempInfo[5], tempInfo[6]);
+                        Console.Clear();
+                        Console.WriteLine("Changing Status....");
                         Thread.Sleep(2000);
                         Console.Clear();
                     }
